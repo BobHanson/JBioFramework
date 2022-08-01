@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>SwingJS Test Electrophoresis</title><meta charset="utf-8" />
+    <script class="simulation" src="swingjs/swingjs2.js"></script>
+    <script>
+      if (!self.SwingJS)alert('swingjs2.js was not found. It needs to be in swingjs folder in the same directory as ' + document.location.href)
+      Info = {
+        code: null,
+        main: "main.java.Electro1D.Electrophoresis",
+        core: "_jbf",
+	      height: 550,
+        readyFunction: null,
+	      serverURL: 'https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php',
+	      j2sPath: 'swingjs/j2s',
+	      console:'sysoutdiv',
+	      allowjavascript: true
+      }
+    </script>
+    <link rel="stylesheet" href="css/style_alt-copy.css">
+  </head>
+
+  <body>
+
+    <header>
+      <nav>
+        <img class="BASIL-logo" src="https://i.imgur.com/I6WCmWn.png"/>
+         <ul>
+          <li><a href="https://basilbiochem.github.io/basil/setup.html" target="_blank">BASIL Homepage</a></li>
+          <li><a href="#resource">Instructions</a></li>
+          <li><a href="https://github.com/BobHanson/JBioFramework" target="_blank">Github (Source Code)</a></li>
+          <li id="edge"><a href="mailto:paul.craig@rit.edu">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <div class="title">
+        <h3>
+          1D Gel Electrophoresis
+        </h3>
+      </div>
+      <br>
+      <section class="simulation">
+      <div>
+
+        <!--<script>
+          SwingJS.getApplet('testApplet', Info)
+          getClassList = function(){J2S._saveFile('_j2sclasslist.txt', Clazz.ClassFilesLoaded.sort().join('\n'))}
+        </script>
+        <div id="sysoutdiv" contentEditable="true"></div>
+        <div id="testApplet-Electro1D-div"></div>-->
+
+        <script>SwingJS.getApplet('testApplet',Info)
+          getClassList=function(){J2S._saveFile('_j2sclasslist.txt',Clazz.ClassFilesLoaded.sort().join('\n'))}</script>
+                  <div id="sysoutdiv" contentEditable="true" style="border:10px solid green;width:100%;height:95%;overflow:auto;display:none"></div>
+                  <div id="testApplet-Electro1D-div"></div>
+      </div>
+      </section>
+
+      <div id="resource"></div>
+
+    <div class="content">
+      <input type="radio" id="gen_inst" name="content" checked="checked">
+      <label for="gen_inst">General Instructions</label>
+      <div class="tab">
+          <br>
+          <h4>INSTRUCTIONS:</h4>
+          <br>
+      <p>
+        <ol>
+          <li>Mark the checkboxes for all standards you would like to include.</li>
+          <li>Click a well for your protein and navigate to your protein's data file (FASTA) in the file explorer window. <a href="https://drive.google.com/file/d/1TaZ3qnBVhLXGDKiLqL9wuKXTPK3hzZ9d/view?usp=sharing" target="_blank">You can download the files for the DNASU BASIL starter pack V1 here.</a></li>
+          <li>Set your desired voltage and % Acrylamide. </li>
+          <li>Run the simulation by clicking start and stop it right before the dye runs to the bottom of the gel. </li>
+          <li>Analyze the run by clicking on any band to display its contents data and exploring the plot generated in the second simulation tab.</li>
+          <li>Either refill wells to run it again with the same proteins or clear wells to restart the simulation.</li>
+        </ol>
+      </p>
+      </div>
+          <input type="radio" id="doc" name="content">
+          <label for="doc">BASIL SDS-PAGE</label>
+          <div class="tab">
+            <br>
+            <p id="document">You can open the module instructions in a separate tab <strong><a href="https://docs.google.com/document/d/12o83_VOTVOiJOxq3o4xhQNKc_NtbWeGFz26ZoPd14lY/edit?usp=sharing" target="_blank">here</a></strong> or use the embedded page below</p>
+            <br>
+            <iframe 
+            width= 800;
+            height= 758;
+            src="https://docs.google.com/document/d/e/2PACX-1vTeM9qYffQestuHJJ0CH_NG5xUyh8F4AFiCH7-Oe8iM6A9E0zb1PCEl8TX66j6O72elSavLSaCIzXbh/pub?embedded=true">
+            </iframe>
+          </div>
+
+          <input type="radio" id="howto" name="content">
+          <label for="howto">How to Create Scenarios</label>
+          <div class="tab">
+            <br>
+              <p>
+                  The default version of this 1D electrophoresis simulation is based on ten different protein sets that are part of the BASIL (<a href="https://basilbiochem.github.io/basil/index.html" target="_blank">Biochemistry Authentic Scientific Inquiry Lab</a>). If you are interested, you can also design your own separations. Instructors can use this to prepare their students for a wet lab experience, such as protein purification. Students can use this to enhance their understanding or to dig deeper as they analyze data for a lab report.<br>
+                </p>
+                <br>
+                <h3>Instructions for Creating Your Own Separation Lab</h3>
+                <br>
+                <p>
+                    <ol>
+                      <li>The standards are hard-coded into the simulation. They cover a MW range that will apply to most separations, especially at the undergraduate level.</li><br>
+                      <li>All protein sequences must be in FASTA format and will look something like this in a text editor.<br>
+                        <br>
+                        >2O14_1|Chain A|Hypothetical protein yxiM|Bacillus subtilis (1423)
+                        MFGGIENVKAAEPKVYQFDFGSGSMEPGYIGVRASDRYDRSKGY
+                        GFQTPENMRDVAASGAGVKSDAVEFLAYGTKSNNTFNVDLPNGL
+                        YEVKVTLGNTARASVAAEGVFQVINMTGDGAEDTFQIPVTDGQL
+                        NLLVTEGKAGTAFTLSALKIKKLSDQPVTNRTIYVGGDSTVCNYY
+                        PLNSSKQAGWGQMLPHYIDKHTFQVRNMASGGQIARGFRNDGQ
+                        LEAILKYIKPGDYFMLQLGINDTNPKHKESEAEFKEVMRDMIRQ
+                        VKAKGADVILSTPQGRATDFTSEGIHSSVNRWYRASILALAEEE
+                        KTYLIDLNVLSSAYFTSIGPERTLGLYMDGDTLHPNRAGADALA
+                        RLAVQELKRQGIAGFLEHHHHHH
+                      </li><br>
+                      <li>In the 1DE simulation, all of the bands have a default depth of 1 pixel. To make a band broader, you simply add “ |$#” followed by a number ranging from 2 - 9. So if the protein listed above is the target protein for your separation, you can change the FASTA file to look like this:<br>
+                        <br>
+                        >2O14_1|Chain A|Hypothetical protein yxiM|Bacillus subtilis (1423)  |$#4
+                        MFGGIENVKAAEPKVYQFDFGSGSMEPGYIGVRASDRYDRSKGY
+                        GFQTPENMRDVAASGAGVKSDAVEFLAYGTKSNNTFNVDLPNGL
+                        YEVKVTLGNTARASVAAEGVFQVINMTGDGAEDTFQIPVTDGQL
+                        NLLVTEGKAGTAFTLSALKIKKLSDQPVTNRTIYVGGDSTVCNYY
+                        PLNSSKQAGWGQMLPHYIDKHTFQVRNMASGGQIARGFRNDGQ
+                        LEAILKYIKPGDYFMLQLGINDTNPKHKESEAEFKEVMRDMIRQ
+                        VKAKGADVILSTPQGRATDFTSEGIHSSVNRWYRASILALAEEE
+                        KTYLIDLNVLSSAYFTSIGPERTLGLYMDGDTLHPNRAGADALA
+                        RLAVQELKRQGIAGFLEHHHHHH
+                      </li><br>
+                      <li>Create the proteins samples (in FASTA format) for the wells for a protein purification. You can put multiple FASTA sequences in a single file. Just make sure that you start each protein with the line that has a ‘>’ sign on the beginning.<br>
+                        <br>
+                        <ul>
+                          <li>Well 1: standards (hard-coded default)</li>
+                          <li>Well 2: the full proteome of the organism, for example, E. coli</li>
+                          <li>Well 3: the full proteome of the organism with the overexpressed protein band labeled with the tag “|$#6” on the first line of the FASTA file to make that band thicker.</li>
+                          <li>Well 4: the result of the first separation step. If this is cation exchange chromatography at pH 4.8, then you’ll need to determine which proteins are positively charged at pH 4.8. You can use this tool (https://www.protpi.ch/Calculator/ProteinTool/) but it only does one protein at a time. You may be able to find other tools.</li>
+                          <li>Well 5: the result of the next separation step. For example, you could do gel filtration select proteins based on MW (the number of amino acids in the protein chain is a close approximation that you could use for this separation).</li>
+                          <li>Well 6: first wash of a metal ion affinity chromatography step - should release all proteins except the target protein.</li>
+                          <li>Well 7: second wash of a metal ion affinity chromatography step.</li>
+                          <li>Well 8: elution wash #1 with imidazole of the metal ion affinity chromatography step. Set the band width at |$#5.</li>
+                          <li>Well 9: elution wash #2 with imidazole of the metal ion affinity chromatography step. Set the band width at |$#8.</li>
+                          <li>Well 10: elution wash #3 with imidazole of the metal ion affinity chromatography step. Set the band width at |$#3.</li>
+                        </ul>
+                      </li><br>
+                      <li>Put all of the proteins in a single file that you share with your students.</li><br>
+                      <li>Have them use the 1DE simulation with the protein samples in your folder.</li>
+                    </ol>
+                  </p>
+                  <p>
+                    Other possibilities would be any mixture of proteins you normally separate on an SDS-PAGE gel in your lab. For example, you could create protein samples that are generated by different experiments that may or
+                    may not express a target protein. Or you could use it to teach about the molecular weights of proteins that are monomeric and proteins that are multimeric. You would just need to create set up two versions of
+                    the multimeric protein - one in which each separate chain had its own FASTA file and one in which all of the chains are in a single FASTA file.
+                  </p>
+      
+          </div>
+          <input type="radio" id="addlink" name="content">
+          <label for="addlink">Additional Resources</label>
+          <div class="tab">
+            <br>
+              <h3>Related Content</h3>
+              <br>
+              <p class="links">
+                  <ul>
+                      <li>
+                          <strong><a href="https://ftp.ncbi.nlm.nih.gov/genomes/refseq/archaea/" target="_blank">NCBI Index of Archaea Genomes</a></strong>
+                          <br>
+                          <br>
+                          <strong><a href="https://ftp.ncbi.nlm.nih.gov/genomes/refseq/bacteria/" target="_blank">NCBI Index of Bacteria Genomes</a></strong>
+                          <br>
+                          <br>
+                          These resources catalog multiple reference sequences of known archaea and bacteria genomes, respectively. The protein files contained in this database can be downloaded and run in the 1D Electrophoresis Simulation. Follow the steps below:
+                          <br>
+                          <br>
+                          <ol class="indent_1">
+                            <li>Click on your desired archaea or bacteria genome in the sequence index></li>
+                            <li>Select “latest_assembly_versions/”</li>
+                            <li>Select the newest version of your desired sequence by comparing the “Last modified” results</li>
+                            <li>From the resulting list, choose the result ending in “protein.faa.gz” This will automatically download the file to your computer.</li>
+                              <ul class="indent_2">
+                                <li>For Windows and Linux users: You will need to convert the file from a .gunzip (gz) to .faa. If you do not already have a file converter, <a href="https://www.7-zip.org/">7-zip</a> is a free software that can unzip .gunzip files. You may use other file conversion programs as well, like <a href="https://www.winzip.com/en/">WinZip</a>.</li>
+                                  <ul class="indent_3">
+                                    <li>Download 7-zip <a href="https://www.7-zip.org/">here</a>.</li>
+                                    <li>Open 7-zip and navigate to your .gunzip file. Select the file and click “Extract” in the top ribbon</li>
+                                    <li>Save the extracted .faa file somewhere secure </li>
+                                  </ul>
+                                <li>For Mac Users: Mac is able to extract .gz files without external aid. Ensure the file has been unzipped to .faa format before proceeding to the simulation </li>
+                              </ul>
+                            <li>The .faa file can now be loaded into the simulation. Load selected standards into well 1 before loading your .faa file(s) into the remaining wells.</li>
+                            <li>Run the simulation.</li>
+                          </ol>
+                      </li>
+                      <br>
+                      <li>
+                          <strong><a href="https://hamap.expasy.org/proteomes.html" target="_blank">HAMAP Proteomes</a></strong>
+                          <br><br>
+                          HAMAP is a protein annotation system that compiles protein family profiles from UniProtKB. You can use HAMAP to acquire proteome information from a variety of archaea and bacteria. Follow the steps below:
+                          <br><br>
+                          <ol class="indent_1">
+                            <li>Navigate to the HAMAP website. Depending on your desired proteome target, choose either the archaea or bacteria drop down menu</li>
+                            <li>Find and select your desired organism either by name or UniProt. Once selected, choose “Proteome Info” on the right-hand side of the page. This will open up a page in UniProt. This page provides some basic information about your selected target. </li>
+                            <li>Scroll down to the section titled “Components.” Select the sequence checkboxes and hit “Download”</li>
+                            <li>On the next screen, make sure the format is listed as “FASTA (canonical)”</li>
+                            <li>From here, there is an option to compress the file. Compressing the file leads to a faster download, but you will have to unzip the file after it is downloaded. For instructions on how to do this, see step 4 of how to obtain files from NCBI Index sources above. If you do not wish to extract the files, download them uncompressed. </li>
+                            <li>The .fasta file can now be loaded into the simulation. Load selected standards into well 1 before loading your .fasta file(s) into the remaining wells.</li>
+                            <li>Run the simulation.</li>
+                          </ol>
+                      </li>
+                      <br>
+                      <li>
+                          <strong><a href="https://docs.google.com/presentation/d/1wBhG6--Y6OBM2EjZ2pFv9RySytTSdq1LD8ViTDrNWRY/edit?usp=sharing" target="_blank">SDS-PAGE Simulation Update Poster Project</a></strong>
+                          <br>
+                          In the Spring of 2022, RIT student Tyler Bernhardt adapted a previous SDS-PAGE simulation by expanding well capacity, updating sample loading UI, integrating ten built-in protein sets and learning objectives designed for the BASIL curriculum, and implementing user ability to load custom designed protein mixtures. A link to Mr. Bernhardt's poster can be found <a href="https://docs.google.com/presentation/d/1wBhG6--Y6OBM2EjZ2pFv9RySytTSdq1LD8ViTDrNWRY/edit?usp=sharing" target="_blank">here</a>, detailing the project's goals, updating process, results, and projections. 
+                      </li>
+                  </ul>
+              </p>
+          </div>
+          </div>
+<br>
+  <footer>
+    <a href="https://www.rit.edu/science/" target="blank"><img src="https://i.imgur.com/5weMW2y.png" alt="RIT College of Science"/></a>
+    <p>Page Moderator: Dr. Paul Craig
+      <br>
+      Professor at the RIT School of<br>
+      Chemistry and Materials Science
+      <br>
+      <a href="mailto:paul.craig@rit.edu">paul.craig@rit.edu</a>
+      <br>
+      585-475-6145
+    </p>
+      <section class="nsf">
+        <div class="grant">
+          <h4>Grants</h4>
+          <p>
+            NSF IUSE:
+            <br>
+            2142033
+            <br>
+            1709170
+            <br>
+            1503811
+          </p>
+        </div>
+        <a href="https://www.nsf.gov/"><img class="nsf2" src="css/NSF_4-Color_bitmap_Logo.png" alt="NSF Logo" target="_blank"/></a>
+    </section>
+  </footer>
+
+  </body>
+
+</html>
