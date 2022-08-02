@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding:0;
+  }
+  body {
+    font-family: Helvetica, Georgia, Arial, sans-serif;
+    background-color: #FFF;
+    color:#000;
+    display: flex;
+    flex-direction: column;
+    }
+
+    header {
+        display: inline-flex;
+        align-content: center;
+        justify-content:space-between;
+        z-index: 5;
+        position:fixed;
+        top: 0px;
+    }
+
+
+  /*nav {
+    height: 80px;
+    width: 100%;
+    background-color:#F76902;
+    color:#FFF;
+    font-family: Helvetica, Georgia, Arial, sans-serif;
+    font-weight: bold;
+    position: fixed;
+    top: 0px;
+    font-size: 24;
+    display: inline-flex;
+    justify-content: space-evenly;
+    float: top;
+  }*/
+
+    nav {
+    height: 80px;
+    width: 100%;
+    background-color:#F76902;
+    color:#FFF;
+    font-family: Helvetica, Georgia, Arial, sans-serif;
+    font-weight: bold;
+    position: fixed;
+    top: 0px;
+    font-size: 24;
+    display: inline-flex;
+    float: top;
+    }
+
+    nav img {
+        width: auto;
+        height: 75%;
+        display: flex;
+        justify-content: left !important;
+        align-items: left;
+        margin-left: 30px;
+        margin-top: 10px;
+        margin-right: 30px;
+        padding:0px !important;
+        float: left;
+    }  
+    
+    nav a {
+    color: #FFF;
+    justify-content: center;
+    align-content: center;
+    overflow: hidden;
+    transition: all 0.2s linear;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    color: #000;
+    
+  }
+
+  nav ul {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-content: center;
+    list-style: none;
+    padding: 0px;
+    justify-content: space-evenly;
+    display: inline-flex;
+    width: 100%;
+  }
+
+  nav ul li {
+    margin-top: 35px;
+    padding: 0px;
+    justify-content: space-evenly;
+    display: inline-flex;
+    width: 100%;
+  }
+
+.title{
+    font-size: 48px;
+    color:#F76902;
+    text-align: center;
+    justify-content: center;
+    align-items:center;
+    padding: 10px;
+    position: relative;
+    top: 90px;
+    grid-area: header;
+    border: 3px, solid, coral;
+  }
+
+  .simulation {
+    height: 600px;
+    display: block;
+    position: relative;
+    top: 90px;
+    grid-area: section;
+    /*margin-left: 185px;*/
+    z-index: 1;
+    font-size: 1px;
+    margin: auto;
+    width: 900px;
+  }
+
+  .tab{
+    grid-area: footer;
+  }
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  max-width: 800px;
+  margin: 50px;
+  padding: 100px;
+  color: #000;
+  align-content: center;
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+  line-height: 20px;
+  z-index: 2;
+}
+
+.content input[type="radio"] {
+  display: none;
+}
+
+.content label {
+  background-color:#D0D3D4;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content label:hover {
+  background-color:#A2AAAD;
+  transition: all 0.15s linear;
+  text-decoration: none;
+}
+
+.content .tab {
+  order: 1;
+  display: none;
+}
+
+.content h3, h4 {
+  font-size: 20px;
+}
+
+.content input[type="radio"]:checked + label + .tab {
+  display: block;
+}
+
+.content input[type="radio"]:checked + label {
+  background-color:#7C878E;
+  color: #FFF;
+}
+
+.content .tab #google_doc {
+  max-width: 900px;
+  max-height: 800px;
+}
+
+.content a {
+color:#F76902;
+}
+
+ul .indent_1 {
+  padding-left: 30px;
+}
+
+ul .indent_2 {
+  padding-left: 40px;
+
+}
+
+ul .indent_3 {
+  padding-left: 50px;
+  list-style-type: circle;
+}
+
+
+footer {
+    background-color: #000;
+    color: #FFF;
+    width: 100%;
+    height: 140px;
+    display: inline-flex;
+    justify-content: space-evenly;
+    float: bottom;
+    position: relative;
+    bottom: 0px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+footer p {
+  font-size: 14px;
+  margin-top:10px;
+  line-height: 1.35;
+}
+
+footer a {
+  color: #FFF;
+}
+
+footer img {
+    max-width: 200px;
+    max-height: 53.5px;
+    padding: 0px;
+    margin-top: 40px;
+}
+
+footer .links {
+    color: #FFF;
+}
+
+footer .nsf2 {
+  max-height: 100px !important;
+  margin-top: 10px;
+  padding: 0px;
+  position: relative;
+  right: 10px;
+}
+
+footer .nsf .grant h4 {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+.grant p {
+  font-size: 14px;
+  margin-top: 2px !important;
+}
+
+.grant {
+  margin-top: 0px;
+  margin-left: 30px;
+  margin-right: 100px;
+}
+
+section.nsf {
+  display: inline-flex;
+  float: right;
+  position: relative;
+  right: 20px;
+}
